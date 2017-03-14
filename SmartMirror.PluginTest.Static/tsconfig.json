@@ -1,0 +1,17 @@
+﻿{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "pretty": true,
+    "module": "commonjs",
+    "target": "es5"
+  },
+  "compileOnSave": true,
+  "files": [
+    "typings/index.d.ts",
+    //"app/custom.d.ts",
+    "app/app.ts"
+  ]
+}

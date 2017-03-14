@@ -1,0 +1,56 @@
+/// <reference path="../../variables">
+
+.clock {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: @clock-size;
+    height: @clock-size;
+    border: @clock-border;
+    border-radius: 50%;
+
+    &-second {
+        top: floor((@clock-size/2)-(@clock-minute-height/2));
+        left: @clock-second-left;
+        height: @clock-second-height;
+        border-left: floor(@clock-second-width - @clock-second-left) solid transparent;
+        border-right: floor(@clock-second-width - @clock-second-left) @clock-second-border-style @clock-second-color;
+    }
+
+    &-minute {
+        top: floor((@clock-size/2)-(@clock-minute-height/2));
+        left: @clock-minute-left;
+        height: @clock-minute-height;
+        border-left: floor(@clock-minute-width - @clock-minute-left) solid transparent;
+        border-right: floor(@clock-minute-width - @clock-minute-left) @clock-minute-border-style @clock-minute-color;
+    }
+
+    &-hour {
+        top: floor((@clock-size/2)-(@clock-hour-height/2));
+        left: @clock-hour-left;
+        height: @clock-hour-height;
+        border-left: floor(@clock-hour-width - @clock-hour-left) solid transparent;
+        border-right: floor(@clock-hour-width - @clock-hour-left) @clock-hour-border-style @clock-hour-color;
+    }
+
+    &-center {
+        position: absolute;
+        left: floor((@clock-size/2)-(@clock-center-size/2));
+        top: floor((@clock-size/2)-(@clock-center-size/2));
+        width: @clock-center-size;
+        height: @clock-center-size;
+        border-radius: 50%;
+        background-color: @clock-center-color;
+    }
+
+    &-hand {
+        position: absolute;
+        width: 0px;
+        opacity: @clock-center-hand-opacity;
+    }
+
+    &-number {
+        position: absolute;
+        font-weight: @clock-number-font-weight;
+    }
+}
