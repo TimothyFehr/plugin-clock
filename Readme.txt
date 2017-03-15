@@ -1,6 +1,8 @@
 Setup a new Plugin
 -------------------
 
+0. Root to Static Folder
+
 1. Install all NPM packages with
 > npm install
 
