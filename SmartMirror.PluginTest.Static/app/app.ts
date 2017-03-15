@@ -4,6 +4,7 @@ $(document).ready(function () {
     // register plugin
     new Clock($('.clock'), {
         clockSize: 320,
-        numberSpaceBorder: 24
+        numberSpaceBorder: 12,
+        clockNumberSize: 24
     });
 });

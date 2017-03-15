@@ -3,6 +3,7 @@ export interface IClockOptions {
     clockMinuteSelector?: string;
     clockHourSelector?: string;
     clockNumberClass?: string;
+    clockNumberSize: number;
     clockSize: number;
     numberSpaceBorder: number;
 }
@@ -30,8 +31,8 @@ export class Clock {
         this.$minute = this.$element.find(this.options.clockMinuteSelector);
         this.$hour = this.$element.find(this.options.clockHourSelector);
 
-        var numberPosition = (this.options.clockSize / 2) - (this.options.numberSpaceBorder/2) + 2;
-        var numberPositionSpace = (this.options.clockSize / 2) - this.options.numberSpaceBorder;
+        var numberPosition = (this.options.clockSize / 2) -  this.options.clockNumberSize/2;
+        var numberPositionSpace = (this.options.clockSize / 2) - this.options.numberSpaceBorder - this.options.clockNumberSize/2;
         var angle = -this.step * 2;
 
         for (var i = 0; i < 12; i++) {
@@ -53,7 +54,7 @@ export class Clock {
         var time = new Date();
         var secs = time.getSeconds() * this.step60 - 90;
         var mins = time.getMinutes() * this.step60 - 90;
-        var hours = time.getHours() % 12 * this.step12 - 90;
+        var hours = (time.getHours() % 12) * this.step12 - 90 + (time.getMinutes() * (this.step12/60));
 
         this.$second.css({
             '-webkit-transform': 'rotateZ(' + secs + 'deg)',
@@ -77,6 +78,7 @@ export class Clock {
         clockMinuteSelector: '.clock-minute',
         clockHourSelector: '.clock-hour',
         clockNumberClass: 'clock-number',
+        clockNumberSize:24,
         clockSize: 150,
         numberSpaceBorder: 30
     };

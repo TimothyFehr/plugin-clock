@@ -55,7 +55,9 @@
 
 /*Clock*/
 @clock-size:                                320px;
-@clock-border:                              2px dotted @gray-base;
+@clock-border-width:                        2px;
+@clock-border:                              @clock-border-width dotted @gray-base;
+
 
 @clock-second-width:                        @clock-size/2;
 @clock-second-height:                       4px;
@@ -80,4 +82,8 @@
 
 @clock-center-hand-opacity:                 1;
 
+
+@clock-number-width:                        24px;
+@clock-number-height:                       24px;
+@clock-number-font-size:                    14px;
 @clock-number-font-weight:                  bold;

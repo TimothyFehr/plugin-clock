@@ -87,8 +87,8 @@ var Clock = (function () {
         this.$second = this.$element.find(this.options.clockSecondSelector);
         this.$minute = this.$element.find(this.options.clockMinuteSelector);
         this.$hour = this.$element.find(this.options.clockHourSelector);
-        var numberPosition = (this.options.clockSize / 2) - (this.options.numberSpaceBorder / 2) + 2;
-        var numberPositionSpace = (this.options.clockSize / 2) - this.options.numberSpaceBorder;
+        var numberPosition = (this.options.clockSize / 2) - this.options.clockNumberSize / 2;
+        var numberPositionSpace = (this.options.clockSize / 2) - this.options.numberSpaceBorder - this.options.clockNumberSize / 2;
         var angle = -this.step * 2;
         for (var i = 0; i < 12; i++) {
             $('<div>', {
@@ -107,7 +107,7 @@ var Clock = (function () {
         var time = new Date();
         var secs = time.getSeconds() * this.step60 - 90;
         var mins = time.getMinutes() * this.step60 - 90;
-        var hours = time.getHours() % 12 * this.step12 - 90;
+        var hours = (time.getHours() % 12) * this.step12 - 90 + (time.getMinutes() * (this.step12 / 60));
         this.$second.css({
             '-webkit-transform': 'rotateZ(' + secs + 'deg)',
             '-moz-transform': 'rotate(' + secs + 'deg)',
@@ -131,6 +131,7 @@ Clock.Default = {
     clockMinuteSelector: '.clock-minute',
     clockHourSelector: '.clock-hour',
     clockNumberClass: 'clock-number',
+    clockNumberSize: 24,
     clockSize: 150,
     numberSpaceBorder: 30
 };
@@ -150,7 +151,8 @@ $(document).ready(function () {
     // register plugin
     new clock_1.Clock($('.clock'), {
         clockSize: 320,
-        numberSpaceBorder: 24
+        numberSpaceBorder: 12,
+        clockNumberSize: 24
     });
 });
 

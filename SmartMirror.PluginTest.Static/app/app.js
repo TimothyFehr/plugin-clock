@@ -4,7 +4,8 @@ $(document).ready(function () {
     // register plugin
     new clock_1.Clock($('.clock'), {
         clockSize: 320,
-        numberSpaceBorder: 24
+        numberSpaceBorder: 12,
+        clockNumberSize: 24
     });
 });
 //# sourceMappingURL=app.js.map
