@@ -6,12 +6,13 @@
     "sourceMap": true,
     "pretty": true,
     "module": "commonjs",
-    "target": "es5"
+    "target": "es5",
+    "allowJs": true
   },
   "compileOnSave": true,
   "files": [
     "typings/index.d.ts",
-    //"app/custom.d.ts",
+    "app/custom.d.ts",
     "app/app.ts"
   ]
 }

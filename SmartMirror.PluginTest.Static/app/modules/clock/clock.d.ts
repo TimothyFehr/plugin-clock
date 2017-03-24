@@ -18,6 +18,9 @@ export declare class Clock {
     private step: number;
     constructor(element: JQuery, options: IClockOptions);
     init(): void;
+    private setClockFaceBackgroundColor();
+    private setNeedle();
+    private generateClockNumbers();
     private updateTime();
     static Default: IClockOptions;
 }

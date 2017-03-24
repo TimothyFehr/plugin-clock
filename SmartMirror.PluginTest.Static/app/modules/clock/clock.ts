@@ -5,7 +5,9 @@ export interface IClockOptions {
     clockNumberClass?: string;
     clockNumberSize: number;
     clockSize: number;
+    clockFaceBackgroundColor?: string;
     numberSpaceBorder: number;
+    
 }
 
 export class Clock {
@@ -14,25 +16,42 @@ export class Clock {
     $minute: JQuery;
     $hour: JQuery;
     options: IClockOptions;
+    private date: number;
     private step60 = 360 / 60;
     private step12 = 360 / 12;
     private step = (Math.PI * 2) / 12;
 
-    constructor(element: JQuery, options: IClockOptions) {
+    constructor(element: JQuery, options: IClockOptions, guid: string, dateString: number) {
         this.$element = $(element);
         this.options = $.extend({}, Clock.Default, options);
+        this.date = dateString;
+        this.$element.attr('id', guid);
 
         this.init();
-        setInterval(() =>  this.updateTime(), 1000);
+        setInterval(() => this.updateTime(), 1000);
     }
 
     public init() {
+        this.setNeedle();
+        this.generateClockNumbers();
+        this.updateTime();
+        this.setClockFaceBackgroundColor();
+    }
+
+    private setClockFaceBackgroundColor() {
+        this.$element.css('background-color', this.options.clockFaceBackgroundColor);
+    }
+
+    private setNeedle() {
         this.$second = this.$element.find(this.options.clockSecondSelector);
         this.$minute = this.$element.find(this.options.clockMinuteSelector);
         this.$hour = this.$element.find(this.options.clockHourSelector);
+    }
 
-        var numberPosition = (this.options.clockSize / 2) -  this.options.clockNumberSize/2;
-        var numberPositionSpace = (this.options.clockSize / 2) - this.options.numberSpaceBorder - this.options.clockNumberSize/2;
+    private generateClockNumbers() {
+        this.$element.find(this.options.clockNumberClass).remove();
+        var numberPosition = (this.options.clockSize / 2) - this.options.clockNumberSize / 2;
+        var numberPositionSpace = (this.options.clockSize / 2) - this.options.numberSpaceBorder - this.options.clockNumberSize / 2;
         var angle = -this.step * 2;
 
         for (var i = 0; i < 12; i++) {
@@ -46,12 +65,11 @@ export class Clock {
             }).appendTo(this.$element);
             angle += this.step;
         }
-
-        this.updateTime();
     }
 
-    private updateTime() {
-        var time = new Date();
+    private updateTime() {      
+        var time = new Date(this.date);
+        this.date += 1000;
         var secs = time.getSeconds() * this.step60 - 90;
         var mins = time.getMinutes() * this.step60 - 90;
         var hours = (time.getHours() % 12) * this.step12 - 90 + (time.getMinutes() * (this.step12/60));
@@ -80,6 +98,7 @@ export class Clock {
         clockNumberClass: 'clock-number',
         clockNumberSize:24,
         clockSize: 150,
+        clockFaceBackgroundColor: '#fff',
         numberSpaceBorder: 30
     };
 }
