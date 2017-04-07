@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "watch": "webpack -w",
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "postinstall": "webpack"
   },
   "dependencies": {
     "@types/bootstrap": "^3.3.32",
