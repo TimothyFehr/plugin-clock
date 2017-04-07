@@ -11,8 +11,7 @@
   },
   "compileOnSave": true,
   "files": [
-    "typings/index.d.ts",
-    "app/custom.d.ts",
-    "app/app.ts"
+    "src/app/custom.d.ts",
+    "src/app/app.ts"
   ]
 }

@@ -4,9 +4,9 @@ var webpack = require("webpack");
 
 module.exports = {
 	entry: {
-		app: './app/app.ts',
-		bootstrap: './app/bootstrap.less',
-		main: './app/main.less'
+		app: './src/app/app.ts',
+		bootstrap: './src/app/bootstrap.less',
+		main: './src/app/main.less'
 	},
 	resolve: {
 		extensions: [
@@ -15,7 +15,7 @@ module.exports = {
 		]
 	},
 	output: {
-		path: '../SmartMirror.PluginTest.UI/',
+		path: './dist/',
 		filename: 'Scripts/[name].js',
 		chunkFilename: "Scripts/[id].js",
 		sourceMapFilename: "[file].map",
