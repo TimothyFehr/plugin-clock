@@ -6,12 +6,11 @@
   "private": true,
   "scripts": {
     "watch": "webpack -w",
-    "webpack": "webpack"
+    "build": "webpack"
   },
   "dependencies": {
     "@types/bootstrap": "^3.3.32",
     "@types/jquery": "^2.0.41",
-    "@types/requirejs": "^2.1.29",
     "autoprefixer": "6.7.2",
     "bootstrap": "3.3.7",
     "css-loader": "0.26.1",
