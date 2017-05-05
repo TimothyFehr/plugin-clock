@@ -9,7 +9,9 @@ $(document).ready(function () {
         {
             clockSize: 320,
             numberSpaceBorder: 12,
-            clockNumberSize: 24
+            clockNumberSize: 24,
+            useAnalogClock: true,
+            showDate: true
         },
         new Guid().generateGuid(),
         moment().valueOf(),

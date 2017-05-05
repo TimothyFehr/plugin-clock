@@ -15,26 +15,51 @@ var Clock = (function () {
         setInterval(function () { return _this.updateDate(); }, 1000);
     }
     Clock.prototype.init = function () {
-        this.setNeedle();
-        this.generateClockNumbers();
+        if (this.options.useAnalogClock) {
+            this.setAnalogClock();
+            this.generateClockNumbers();
+            this.setClockFaceBackgroundColor();
+        }
+        else {
+            this.setDigitalClock();
+        }
         this.updateTime();
-        this.setDate();
-        this.updateDate();
-        this.setClockFaceBackgroundColor();
+        if (this.options.showDate) {
+            this.setDate();
+            this.updateDate();
+        }
     };
     Clock.prototype.setClockFaceBackgroundColor = function () {
         this.$element.css('background-color', this.options.clockFaceBackgroundColor);
     };
-    Clock.prototype.setNeedle = function () {
-        this.$second = this.$element.find(this.options.clockSecondSelector);
-        this.$minute = this.$element.find(this.options.clockMinuteSelector);
-        this.$hour = this.$element.find(this.options.clockHourSelector);
+    Clock.prototype.setAnalogClock = function () {
+        this.$clockAnalog = this.$element.find(this.options.clockAnalogSelector);
+        if (this.$clockAnalog) {
+            this.$clockAnalog.addClass('show');
+            this.$second = this.$clockAnalog.find(this.options.clockSecondSelector);
+            this.$minute = this.$clockAnalog.find(this.options.clockMinuteSelector);
+            this.$hour = this.$clockAnalog.find(this.options.clockHourSelector);
+        }
+    };
+    Clock.prototype.setDigitalClock = function () {
+        this.$clockDigital = this.$element.find(this.options.clockDigitalSelector);
+        if (this.$clockDigital != null) {
+            this.$clockDigital.addClass('show');
+            this.$second = this.$clockDigital.find(this.options.clockSecondSelector);
+            this.$minute = this.$clockDigital.find(this.options.clockMinuteSelector);
+            this.$hour = this.$clockDigital.find(this.options.clockHourSelector);
+        }
     };
     Clock.prototype.setDate = function () {
         this.$date = this.$element.find(this.options.clockDateSelector);
+        if (this.$date != null) {
+            this.$date.addClass('show');
+            if (this.setAnalogClock) {
+                this.$date.addClass('-center');
+            }
+        }
     };
     Clock.prototype.generateClockNumbers = function () {
-        this.$clockAnalog = this.$element.find(this.options.clockAnalogSelector);
         this.$element.find(this.options.clockNumberClass).remove();
         var numberPosition = (this.options.clockSize / 2) - this.options.clockNumberSize / 2;
         var numberPositionSpace = (this.options.clockSize / 2) - this.options.numberSpaceBorder - this.options.clockNumberSize / 2;
@@ -54,30 +79,43 @@ var Clock = (function () {
     Clock.prototype.updateTime = function () {
         var time = new Date(this.date);
         this.date += 1000;
-        var secs = time.getSeconds() * this.step60 - 90;
-        var mins = time.getMinutes() * this.step60 - 90;
-        var hours = (time.getHours() % 12) * this.step12 - 90 + (time.getMinutes() * (this.step12 / 60));
-        this.$second.css({
-            '-webkit-transform': 'rotateZ(' + secs + 'deg)',
-            '-moz-transform': 'rotate(' + secs + 'deg)',
-            'transform': 'rotate(' + secs + 'deg)'
-        });
-        this.$minute.css({
-            '-webkit-transform': 'rotateZ(' + mins + 'deg)',
-            '-moz-transform': 'rotate(' + mins + 'deg)',
-            'transform': 'rotate(' + mins + 'deg)'
-        });
-        this.$hour.css({
-            '-webkit-transform': 'rotateZ(' + hours + 'deg)',
-            '-moz-transform': 'rotate(' + hours + 'deg)',
-            'transform': 'rotate(' + hours + 'deg)'
-        });
+        var secs = time.getSeconds();
+        var mins = time.getMinutes();
+        var hours = time.getHours();
+        if (this.options.useAnalogClock) {
+            secs = secs * this.step60 - 90;
+            mins = mins * this.step60 - 90;
+            hours = (hours % 12) * this.step12 - 90 + (mins * (this.step12 / 60));
+            this.$second.css({
+                '-webkit-transform': 'rotateZ(' + secs + 'deg)',
+                '-moz-transform': 'rotate(' + secs + 'deg)',
+                'transform': 'rotate(' + secs + 'deg)'
+            });
+            this.$minute.css({
+                '-webkit-transform': 'rotateZ(' + mins + 'deg)',
+                '-moz-transform': 'rotate(' + mins + 'deg)',
+                'transform': 'rotate(' + mins + 'deg)'
+            });
+            this.$hour.css({
+                '-webkit-transform': 'rotateZ(' + hours + 'deg)',
+                '-moz-transform': 'rotate(' + hours + 'deg)',
+                'transform': 'rotate(' + hours + 'deg)'
+            });
+        }
+        else {
+            this.$second.html(this.getDigitalNumber(secs));
+            this.$minute.html(this.getDigitalNumber(mins));
+            this.$hour.html(this.getDigitalNumber(hours));
+        }
     };
     Clock.prototype.updateDate = function () {
         if (this.$date != null) {
             var date = this.moment().format(this.options.clockDateFormat);
             this.$date.html(date);
         }
+    };
+    Clock.prototype.getDigitalNumber = function (number) {
+        return number < 10 ? '0' + number : number.toString();
     };
     return Clock;
 }());
@@ -93,7 +131,9 @@ Clock.Default = {
     clockNumberSize: 24,
     clockSize: 150,
     clockFaceBackgroundColor: '#fff',
-    numberSpaceBorder: 30
+    numberSpaceBorder: 30,
+    useAnalogClock: true,
+    showDate: true
 };
 exports.Clock = Clock;
 //# sourceMappingURL=clock.js.map

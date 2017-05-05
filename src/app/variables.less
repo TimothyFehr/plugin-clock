@@ -56,7 +56,7 @@
 /*Clock*/
 @clock-size:                                320px;
 @clock-border-width:                        2px;
-@clock-border:                              @clock-border-width dotted @gray-base;
+@clock-border:                              @clock-border-width dotted fadeout(@gray-base,50%);
 
 
 @clock-second-width:                        @clock-size/2;
@@ -87,3 +87,12 @@
 @clock-number-height:                       24px;
 @clock-number-font-size:                    14px;
 @clock-number-font-weight:                  bold;
+
+@clock-time-font-size:                      3em;
+@clock-time-font-weight:                    bold;
+@clock-time-color:                          @gray-base;
+@clock-time-pipe-color:                     red;
+
+@clock-date-font-size:                      1.5em;
+@clock-date-font-weight:                    normal;
+@clock-date-color:                          red;

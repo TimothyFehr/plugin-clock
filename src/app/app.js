@@ -6,7 +6,9 @@ $(document).ready(function () {
     var clock = new clock_1.Clock($('.clock-wrapper'), {
         clockSize: 320,
         numberSpaceBorder: 12,
-        clockNumberSize: 24
+        clockNumberSize: 24,
+        useAnalogClock: true,
+        showDate: true
     }, new guid_1.Guid().generateGuid(), moment().valueOf(), moment);
     // localStorage.setItem('clock', JSON.stringify(clock));
     // localStorage.setItem('clockElement', JSON.stringify(clock.$element))

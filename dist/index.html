@@ -16,9 +16,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 	
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+	<!--<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css" rel="stylesheet" />
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" rel="stylesheet" />
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" rel="stylesheet" />-->
 
 	<link href="./Css/bootstrap.css" rel="stylesheet" />
 	<link href="./Css/main.css" rel="stylesheet" />
@@ -33,12 +33,16 @@
 
     <div class="clock-wrapper">
         <div class="clock-analog">
-            <div class="clock-minute clock-hand"></div>
             <div class="clock-hour clock-hand"></div>
+            <div class="clock-minute clock-hand"></div>
             <div class="clock-second clock-hand"></div>
             <div class="clock-center"></div>
         </div>
-        <div class="clock-digital"></div>
+        <div class="clock-digital clearfix">
+            <div class="clock-hour clock-time-element"></div>
+            <div class="clock-minute clock-time-element"></div>
+            <div class="clock-second clock-time-element"></div>
+        </div>
         <div class="clock-date"></div>
     </div>
 
