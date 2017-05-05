@@ -14,7 +14,7 @@
 @gray-light:								#C3C3C3;
 @gray-darker-light:							#444444;
 @gray-darker:								#333333;
-@gray-dark:									#333;//#222222;
+@gray-dark:									#000;//#222222;
 @gray-darkest:								#222;
 @gray-base:									@gray-dark;
 
@@ -54,45 +54,52 @@
 
 
 /*Clock*/
-@clock-size:                                420px;
-@clock-border-width:                        2px;
-@clock-border:                              @clock-border-width dotted fadeout(@gray-base,50%);
+@clock-wrapper-background-color:            @gray-base;
+@clock-size:                                70vmin;
+@clock-border-width:                        4px;
+@clock-border:                              @clock-border-width dotted fadeout(@color-white,50%);
 
 
 @clock-second-width:                        @clock-size/2;
 @clock-second-height:                       4px;
-@clock-second-left:                         0;
-@clock-second-color:                        @gray-base;
+@clock-second-left:                         44px;
+@clock-second-color:                        @color-white;
 @clock-second-border-style:                 solid;
+@clock-second-calc-width:                   ~"calc(@{clock-second-width} - @{clock-second-left})";
+
 
 @clock-minute-width:                        @clock-size/2;
-@clock-minute-height:                       4px;
-@clock-minute-left:                         0;
-@clock-minute-color:                        @gray-base;
+@clock-minute-height:                       6px;
+@clock-minute-left:                         44px;
+@clock-minute-color:                        @color-white;
 @clock-minute-border-style:                 solid;
+@clock-minute-calc-width:                   ~"calc(@{clock-minute-width} - @{clock-minute-left})";
+
 
 @clock-hour-width:                          @clock-size/2;
-@clock-hour-height:                         4px;
-@clock-hour-left:                           40px;
-@clock-hour-color:                          @brand-secondary;
+@clock-hour-height:                         8px;
+@clock-hour-left:                           54px;
+@clock-hour-color:                          @color-white;
 @clock-hour-border-style:                   solid;
+@clock-hour-calc-width:                     ~"calc(@{clock-hour-width} - @{clock-hour-left})";
 
 @clock-center-size:                         20px;
-@clock-center-color:                        @gray-base;
+@clock-center-color:                        @color-white;
 
 @clock-center-hand-opacity:                 1;
 
 
 @clock-number-width:                        24px;
 @clock-number-height:                       24px;
-@clock-number-font-size:                    14px;
+@clock-number-font-size:                    20px;
 @clock-number-font-weight:                  bold;
+@clock-number-color:                        @color-white;
 
 @clock-time-font-size:                      3em;
 @clock-time-font-weight:                    bold;
-@clock-time-color:                          @gray-base;
-@clock-time-pipe-color:                     red;
+@clock-time-color:                          @color-white;
+@clock-time-pipe-color:                     @color-white;
 
 @clock-date-font-size:                      1.5em;
 @clock-date-font-weight:                    normal;
-@clock-date-color:                          red;
+@clock-date-color:                          @color-white;

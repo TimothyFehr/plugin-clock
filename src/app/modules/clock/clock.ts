@@ -6,7 +6,7 @@ export interface IClockOptions {
     clockSecondSelector?: string;
     clockMinuteSelector?: string;
     clockHourSelector?: string;
-    clockNumberClass?: string;
+    clockNumberClassName?: string;
     clockNumberSize: number;
     clockFaceBackgroundColor?: string;
     numberSpaceBorder: number;
@@ -39,6 +39,7 @@ export class Clock {
         this.init();
         setInterval(() => this.updateTime(), 1000);
         setInterval(() => this.updateDate(), 1000);
+        window.addEventListener('resize', () => this.init());
 
     }
 
@@ -96,15 +97,16 @@ export class Clock {
     }
 
     private generateClockNumbers() {
-        this.$element.find(this.options.clockNumberClass).remove();
+        this.$element.find(this.options.clockNumberClassName).remove();
         var clockSize = this.$clockAnalog.width();
         var numberPosition = (clockSize / 2) - this.options.clockNumberSize / 2;
         var numberPositionSpace = (clockSize / 2) - this.options.numberSpaceBorder - this.options.clockNumberSize / 2;
         var angle = -this.step * 2;
+        this.$clockAnalog.find('.' + this.options.clockNumberClassName).remove();
 
         for (var i = 0; i < 12; i++) {
             $('<div>', {
-                'class': this.options.clockNumberClass,
+                'class': this.options.clockNumberClassName,
                 css: {
                     left: (numberPosition) + numberPositionSpace * Math.cos(angle),
                     top: (numberPosition) + numberPositionSpace * Math.sin(angle)
@@ -124,8 +126,8 @@ export class Clock {
 
         if (this.options.useAnalogClock) {
             secs = secs * this.step60 - 90;
-            mins = mins * this.step60 - 90;
             hours = ((hours % 12) * this.step12 - 90) + (mins * (this.step12 / 60));
+            mins = mins * this.step60 - 90;
             this.$second.css({
                 '-webkit-transform': 'rotateZ(' + secs + 'deg)',
                 '-moz-transform': 'rotate(' + secs + 'deg)',
@@ -167,9 +169,9 @@ export class Clock {
         clockSecondSelector: '.clock-second',
         clockMinuteSelector: '.clock-minute',
         clockHourSelector: '.clock-hour',
-        clockNumberClass: 'clock-number',
+        clockNumberClassName: 'clock-number',
         clockNumberSize: 24,
-        clockFaceBackgroundColor: '#fff',
+        clockFaceBackgroundColor: '#000',
         numberSpaceBorder: 30,
         useAnalogClock: true,
         showDate: true

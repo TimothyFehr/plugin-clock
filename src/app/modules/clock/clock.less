@@ -1,6 +1,14 @@
 /// <reference path="../../variables">
 
 .clock {
+    &-wrapper {
+        background-color: @clock-wrapper-background-color;
+        width: 100vw;
+        height: 100vh;
+        padding: 10vmin;
+        display: block;
+    }
+
     &-analog {
         position: relative;
         margin-left: auto;
@@ -18,38 +26,43 @@
 
         .clock {
             &-second {
-                top: floor((@clock-size/2)-(@clock-minute-height/2));
+                top: (@clock-size/2);
+                margin-top: -(@clock-second-height/2);
                 left: @clock-second-left;
                 height: @clock-second-height;
-                border-left: floor(@clock-second-width - @clock-second-left) solid transparent;
-                border-right: floor(@clock-second-width - @clock-second-left) @clock-second-border-style @clock-second-color;
+                border-left: @clock-second-calc-width solid transparent;
+                border-right: @clock-second-calc-width @clock-second-border-style @clock-second-color;
                 box-sizing: content-box;
             }
 
             &-minute {
-                top: floor((@clock-size/2)-(@clock-minute-height/2));
+                top: (@clock-size/2);
+                margin-top: -(@clock-minute-height/2);
                 left: @clock-minute-left;
                 height: @clock-minute-height;
-                border-left: floor(@clock-minute-width - @clock-minute-left) solid transparent;
-                border-right: floor(@clock-minute-width - @clock-minute-left) @clock-minute-border-style @clock-minute-color;
+                border-left: @clock-minute-calc-width solid transparent;
+                border-right: @clock-minute-calc-width @clock-minute-border-style @clock-minute-color;
                 box-sizing: content-box;
             }
 
             &-hour {
-                top: floor((@clock-size/2)-(@clock-hour-height/2));
+                top: (@clock-size/2);
+                margin-top: -(@clock-hour-height/2);
                 left: @clock-hour-left;
                 height: @clock-hour-height;
-                border-left: floor(@clock-hour-width - @clock-hour-left) solid transparent;
-                border-right: floor(@clock-hour-width - @clock-hour-left) @clock-hour-border-style @clock-hour-color;
+                border-left: @clock-hour-calc-width solid transparent;
+                border-right: @clock-hour-calc-width @clock-hour-border-style @clock-hour-color;
                 box-sizing: content-box;
             }
 
             &-center {
                 position: absolute;
-                left: floor((@clock-size/2)-(@clock-center-size/2));
-                top: floor((@clock-size/2)-(@clock-center-size/2));
+                left: @clock-size/2;
+                top: @clock-size/2;
                 width: @clock-center-size;
                 height: @clock-center-size;
+                margin-top: -(@clock-center-size/2);
+                margin-left: -(@clock-center-size/2);
                 border-radius: 50%;
                 background-color: @clock-center-color;
             }
@@ -68,6 +81,7 @@
                 line-height: @clock-number-height;
                 font-size: @clock-number-font-size;
                 font-weight: @clock-number-font-weight;
+                color: @clock-number-color;
             }
         }
     }
@@ -105,7 +119,7 @@
             display: block;
         }
 
-        &.-center{
+        &.-center {
             text-align: center;
         }
     }
