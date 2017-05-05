@@ -1,4 +1,4 @@
-export interface IClockOptions {
+/*export interface IClockOptions {
     clockSecondSelector?: string;
     clockMinuteSelector?: string;
     clockHourSelector?: string;
@@ -23,4 +23,4 @@ export declare class Clock {
     private generateClockNumbers();
     private updateTime();
     static Default: IClockOptions;
-}
+}*/

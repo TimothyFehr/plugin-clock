@@ -1,6 +1,6 @@
 "use strict";
 var Clock = (function () {
-    function Clock(element, options, guid, dateString) {
+    function Clock(element, options, guid, dateString, moment) {
         var _this = this;
         this.step60 = 360 / 60;
         this.step12 = 360 / 12;
@@ -8,14 +8,18 @@ var Clock = (function () {
         this.$element = $(element);
         this.options = $.extend({}, Clock.Default, options);
         this.date = dateString;
+        this.moment = moment;
         this.$element.attr('id', guid);
         this.init();
         setInterval(function () { return _this.updateTime(); }, 1000);
+        setInterval(function () { return _this.updateDate(); }, 1000);
     }
     Clock.prototype.init = function () {
         this.setNeedle();
         this.generateClockNumbers();
         this.updateTime();
+        this.setDate();
+        this.updateDate();
         this.setClockFaceBackgroundColor();
     };
     Clock.prototype.setClockFaceBackgroundColor = function () {
@@ -26,7 +30,11 @@ var Clock = (function () {
         this.$minute = this.$element.find(this.options.clockMinuteSelector);
         this.$hour = this.$element.find(this.options.clockHourSelector);
     };
+    Clock.prototype.setDate = function () {
+        this.$date = this.$element.find(this.options.clockDateSelector);
+    };
     Clock.prototype.generateClockNumbers = function () {
+        this.$clockAnalog = this.$element.find(this.options.clockAnalogSelector);
         this.$element.find(this.options.clockNumberClass).remove();
         var numberPosition = (this.options.clockSize / 2) - this.options.clockNumberSize / 2;
         var numberPositionSpace = (this.options.clockSize / 2) - this.options.numberSpaceBorder - this.options.clockNumberSize / 2;
@@ -39,7 +47,7 @@ var Clock = (function () {
                     top: (numberPosition) + numberPositionSpace * Math.sin(angle)
                 },
                 text: i + 1
-            }).appendTo(this.$element);
+            }).appendTo(this.$clockAnalog);
             angle += this.step;
         }
     };
@@ -65,9 +73,19 @@ var Clock = (function () {
             'transform': 'rotate(' + hours + 'deg)'
         });
     };
+    Clock.prototype.updateDate = function () {
+        if (this.$date != null) {
+            var date = this.moment().format(this.options.clockDateFormat);
+            this.$date.html(date);
+        }
+    };
     return Clock;
 }());
 Clock.Default = {
+    clockAnalogSelector: '.clock-analog',
+    clockDigitalSelector: '.clock-digital',
+    clockDateSelector: '.clock-date',
+    clockDateFormat: 'ddd, d MMM',
     clockSecondSelector: '.clock-second',
     clockMinuteSelector: '.clock-minute',
     clockHourSelector: '.clock-hour',

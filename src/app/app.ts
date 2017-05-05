@@ -5,17 +5,18 @@ declare var moment: any;
 
 $(document).ready(function () {
     // register plugin
-    var clock = new Clock($('.clock'),
+    var clock = new Clock($('.clock-wrapper'),
         {
             clockSize: 320,
             numberSpaceBorder: 12,
             clockNumberSize: 24
         },
         new Guid().generateGuid(),
-        moment().valueOf()
+        moment().valueOf(),
+        moment
     );
 
-    localStorage.setItem('clock', JSON.stringify(clock));
-    localStorage.setItem('clockElement', JSON.stringify(clock.$element))
-    localStorage.setItem('clockOptions', JSON.stringify(clock.options));
+    // localStorage.setItem('clock', JSON.stringify(clock));
+    // localStorage.setItem('clockElement', JSON.stringify(clock.$element))
+    // localStorage.setItem('clockOptions', JSON.stringify(clock.options));
 });

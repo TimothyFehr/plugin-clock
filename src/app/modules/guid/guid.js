@@ -10,15 +10,15 @@ var Guid = (function () {
         for (var i = 0; i < 36; i++) {
             if (guidHolder[i] !== '-' && guidHolder[i] !== '4') {
                 // each x and y needs to be random
-                r = Math.random() * 16 | 0;
+                r = Math.random() * 16 || 0;
             }
             if (guidHolder[i] === 'x') {
                 guidResponse += hex[r];
             }
             else if (guidHolder[i] === 'y') {
                 // clock-seq-and-reserved first hex is filtered and remaining hex values are random
-                r &= 0x3; // bit and with 0011 to set pos 2 to zero ?0??
-                r |= 0x8; // set pos 3 to 1 as 1???
+                r = r && 0x3; // bit and with 0011 to set pos 2 to zero ?0??
+                r = r || 0x8; // set pos 3 to 1 as 1???
                 guidResponse += hex[r];
             }
             else {

@@ -1,14 +1,16 @@
 /// <reference path="../../variables">
 
 .clock {
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    width: @clock-size;
-    height: @clock-size;
-    border: @clock-border;
-    border-radius: 50%;
-    box-sizing: content-box;
+    &-analog {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        width: @clock-size;
+        height: @clock-size;
+        border: @clock-border;
+        border-radius: 50%;
+        box-sizing: content-box;
+    }
 
     &-second {
         top: floor((@clock-size/2)-(@clock-minute-height/2));
