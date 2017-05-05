@@ -8,7 +8,6 @@ export interface IClockOptions {
     clockHourSelector?: string;
     clockNumberClass?: string;
     clockNumberSize: number;
-    clockSize: number;
     clockFaceBackgroundColor?: string;
     numberSpaceBorder: number;
     useAnalogClock?: boolean;
@@ -98,8 +97,9 @@ export class Clock {
 
     private generateClockNumbers() {
         this.$element.find(this.options.clockNumberClass).remove();
-        var numberPosition = (this.options.clockSize / 2) - this.options.clockNumberSize / 2;
-        var numberPositionSpace = (this.options.clockSize / 2) - this.options.numberSpaceBorder - this.options.clockNumberSize / 2;
+        var clockSize = this.$clockAnalog.width();
+        var numberPosition = (clockSize / 2) - this.options.clockNumberSize / 2;
+        var numberPositionSpace = (clockSize / 2) - this.options.numberSpaceBorder - this.options.clockNumberSize / 2;
         var angle = -this.step * 2;
 
         for (var i = 0; i < 12; i++) {
@@ -125,7 +125,7 @@ export class Clock {
         if (this.options.useAnalogClock) {
             secs = secs * this.step60 - 90;
             mins = mins * this.step60 - 90;
-            hours = (hours % 12) * this.step12 - 90 + (mins * (this.step12 / 60));
+            hours = ((hours % 12) * this.step12 - 90) + (mins * (this.step12 / 60));
             this.$second.css({
                 '-webkit-transform': 'rotateZ(' + secs + 'deg)',
                 '-moz-transform': 'rotate(' + secs + 'deg)',
@@ -169,7 +169,6 @@ export class Clock {
         clockHourSelector: '.clock-hour',
         clockNumberClass: 'clock-number',
         clockNumberSize: 24,
-        clockSize: 150,
         clockFaceBackgroundColor: '#fff',
         numberSpaceBorder: 30,
         useAnalogClock: true,

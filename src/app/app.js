@@ -4,7 +4,6 @@ var guid_1 = require("./modules/guid/guid");
 $(document).ready(function () {
     // register plugin
     var clock = new clock_1.Clock($('.clock-wrapper'), {
-        clockSize: 320,
         numberSpaceBorder: 12,
         clockNumberSize: 24,
         useAnalogClock: true,

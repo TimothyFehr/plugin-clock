@@ -7,7 +7,6 @@ $(document).ready(function () {
     // register plugin
     var clock = new Clock($('.clock-wrapper'),
         {
-            clockSize: 320,
             numberSpaceBorder: 12,
             clockNumberSize: 24,
             useAnalogClock: true,
