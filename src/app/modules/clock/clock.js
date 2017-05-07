@@ -55,7 +55,7 @@ var Clock = (function () {
         this.$date = this.$element.find(this.options.clockDateSelector);
         if (this.$date != null) {
             this.$date.addClass('show');
-            if (this.setAnalogClock) {
+            if (this.options.useAnalogClock) {
                 this.$date.addClass('-center');
             }
         }
@@ -126,14 +126,14 @@ Clock.Default = {
     clockAnalogSelector: '.clock-analog',
     clockDigitalSelector: '.clock-digital',
     clockDateSelector: '.clock-date',
-    clockDateFormat: 'ddd, d MMM',
+    clockDateFormat: 'ddd, Do MMM',
     clockSecondSelector: '.clock-second',
     clockMinuteSelector: '.clock-minute',
     clockHourSelector: '.clock-hour',
     clockNumberClassName: 'clock-number',
     clockNumberSize: 24,
     clockFaceBackgroundColor: '#000',
-    numberSpaceBorder: 30,
+    numberSpaceBorder: 12,
     useAnalogClock: true,
     showDate: true
 };

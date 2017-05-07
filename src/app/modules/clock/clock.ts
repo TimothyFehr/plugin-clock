@@ -7,9 +7,9 @@ export interface IClockOptions {
     clockMinuteSelector?: string;
     clockHourSelector?: string;
     clockNumberClassName?: string;
-    clockNumberSize: number;
+    clockNumberSize?: number;
     clockFaceBackgroundColor?: string;
-    numberSpaceBorder: number;
+    numberSpaceBorder?: number;
     useAnalogClock?: boolean;
     showDate?: boolean;
 }
@@ -90,7 +90,7 @@ export class Clock {
         if (this.$date != null) {
             this.$date.addClass('show');
 
-            if (this.setAnalogClock) {
+            if (this.options.useAnalogClock) {
                 this.$date.addClass('-center');
             }
         }
@@ -165,14 +165,14 @@ export class Clock {
         clockAnalogSelector: '.clock-analog',
         clockDigitalSelector: '.clock-digital',
         clockDateSelector: '.clock-date',
-        clockDateFormat: 'ddd, d MMM',
+        clockDateFormat: 'ddd, Do MMM',
         clockSecondSelector: '.clock-second',
         clockMinuteSelector: '.clock-minute',
         clockHourSelector: '.clock-hour',
         clockNumberClassName: 'clock-number',
         clockNumberSize: 24,
         clockFaceBackgroundColor: '#000',
-        numberSpaceBorder: 30,
+        numberSpaceBorder: 12,
         useAnalogClock: true,
         showDate: true
     };

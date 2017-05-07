@@ -4,20 +4,35 @@ import { Guid } from './modules/guid/guid';
 declare var moment: any;
 
 $(document).ready(function () {
+    var settings = {
+        useAnalogClock: true,
+        showDate: true,
+        clockDateFormat: 'ddd, Do MMM'
+    };
+
     // register plugin
     var clock = new Clock($('.clock-wrapper'),
-        {
-            numberSpaceBorder: 12,
-            clockNumberSize: 24,
-            useAnalogClock: true,
-            showDate: true
-        },
+        settings,
         new Guid().generateGuid(),
         moment().valueOf(),
         moment
     );
 
-    // localStorage.setItem('clock', JSON.stringify(clock));
-    // localStorage.setItem('clockElement', JSON.stringify(clock.$element))
-    // localStorage.setItem('clockOptions', JSON.stringify(clock.options));
+
+    $('.js-settings-form-submit').on('click', function () {
+        event.preventDefault();
+        event.stopPropagation();
+        var $form = $(this).closest('.js-settings-form');
+        var jsonData = {};
+        $.each($form.serializeArray(), function () {
+            var isBoolean = this.value === 'true' || this.value === 'false';
+            if (isBoolean) {
+                var value = this.value === 'true' ? true : false;
+                jsonData[this.name] = value;
+            } else {
+                jsonData[this.name] = this.value;
+            }
+        });
+        var data = JSON.stringify(jsonData);
+    });
 });
