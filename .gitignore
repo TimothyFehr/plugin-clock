@@ -5,6 +5,3 @@ node_modules
 typings
 
 .vs
-dist/css/
-dist/scripts/
-dist/fonts/

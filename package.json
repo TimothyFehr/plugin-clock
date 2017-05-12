@@ -8,7 +8,7 @@
     "watch": "webpack -w",
     "build": "webpack"
   },
-  "dependencies": {
+  "devDependencies": {
     "@types/bootstrap": "^3.3.32",
     "@types/jquery": "^2.0.41",
     "autoprefixer": "6.7.2",

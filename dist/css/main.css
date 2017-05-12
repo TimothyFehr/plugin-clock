@@ -1,0 +1,110 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,700);/*Buttons*/
+/*Grid*/
+/*List*/
+/*Font*/
+/*Clock*/
+.clock-wrapper {
+  background-color: #000;
+  width: 100vw;
+  height: 100vh;
+  padding: 10vmin;
+  display: block;
+}
+.clock-analog {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70vmin;
+  height: 70vmin;
+  border: 1vmin dotted rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  box-sizing: content-box;
+  display: none;
+}
+.clock-analog.show {
+  display: block;
+}
+.clock-analog .clock-second {
+  top: 35vmin;
+  margin-top: -2px;
+  left: 44px;
+  height: 4px;
+  border-left: calc(35vmin - 44px) solid transparent;
+  border-right: calc(35vmin - 44px) solid #FFFFFF;
+  box-sizing: content-box;
+}
+.clock-analog .clock-minute {
+  top: 35vmin;
+  margin-top: -3px;
+  left: 44px;
+  height: 6px;
+  border-left: calc(35vmin - 44px) solid transparent;
+  border-right: calc(35vmin - 44px) solid #FFFFFF;
+  box-sizing: content-box;
+}
+.clock-analog .clock-hour {
+  top: 35vmin;
+  margin-top: -5px;
+  left: 54px;
+  height: 10px;
+  border-left: calc(35vmin - 54px) solid transparent;
+  border-right: calc(35vmin - 54px) solid #FFFFFF;
+  box-sizing: content-box;
+}
+.clock-analog .clock-center {
+  position: absolute;
+  left: 35vmin;
+  top: 35vmin;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+}
+.clock-analog .clock-hand {
+  position: absolute;
+  width: 0px;
+  opacity: 1;
+}
+.clock-analog .clock-number {
+  position: absolute;
+  text-align: center;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+.clock-digital {
+  display: none;
+}
+.clock-digital.show {
+  display: block;
+}
+.clock-digital .clock-time-element {
+  float: left;
+  font-size: 3em;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+.clock-digital .clock-time-element:not(:last-child):after {
+  content: ":";
+  color: #FFFFFF;
+}
+.clock-date {
+  font-size: 1.5em;
+  font-weight: normal;
+  color: #FFFFFF;
+  display: none;
+  margin-top: 1em;
+}
+.clock-date.show {
+  display: block;
+}
+.clock-date.-center {
+  text-align: center;
+}
+
+/*# sourceMappingURL=main.css.map*/
