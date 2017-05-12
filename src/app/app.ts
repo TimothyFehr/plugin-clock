@@ -62,7 +62,7 @@ $(document).ready(function () {
             });
         }
 
-        $('.js-settings-form-submit').on('click', function () {
+        $('.js-settings-form-submit').on('click', function (event) {
             event.preventDefault();
             event.stopPropagation();
             var $form = $(this).closest('.js-settings-form');
