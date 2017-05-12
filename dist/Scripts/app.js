@@ -263,13 +263,23 @@ exports.Guid = Guid;
 var clock_1 = __webpack_require__(0);
 var guid_1 = __webpack_require__(1);
 $(document).ready(function () {
-    var settings = {
-        useAnalogClock: true,
-        showDate: true,
-        clockDateFormat: 'ddd, Do MMM'
-    };
     // register plugin
-    var clock = new clock_1.Clock($('.clock-wrapper'), settings, new guid_1.Guid().generateGuid(), moment().valueOf(), moment);
+    function initializeClock(settings) {
+        new clock_1.Clock($('.clock-wrapper'), settings, new guid_1.Guid().generateGuid(), moment().valueOf(), moment);
+    }
+    if (window.mirror != null) {
+        window.mirror.onInitialized(function (settings) {
+            initializeClock(settings);
+        });
+    }
+    else {
+        var settings = {
+            useAnalogClock: true,
+            showDate: true,
+            clockDateFormat: 'ddd, Do MMM'
+        };
+        initializeClock(settings);
+    }
     $('.js-settings-form-submit').on('click', function () {
         event.preventDefault();
         event.stopPropagation();

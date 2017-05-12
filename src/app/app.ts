@@ -4,19 +4,28 @@ import { Guid } from './modules/guid/guid';
 declare var moment: any;
 
 $(document).ready(function () {
-    var settings = {
-        useAnalogClock: true,
-        showDate: true,
-        clockDateFormat: 'ddd, Do MMM'
-    };
-
     // register plugin
-    var clock = new Clock($('.clock-wrapper'),
-        settings,
-        new Guid().generateGuid(),
-        moment().valueOf(),
-        moment
-    );
+    function initializeClock(settings){
+        new Clock($('.clock-wrapper'),
+            settings,
+            new Guid().generateGuid(),
+            moment().valueOf(),
+            moment
+        );
+    }
+
+    if(window.mirror != null) {
+        window.mirror.onInitialized(function (settings) {
+            initializeClock(settings)
+        });
+    } else {
+        var settings = {
+            useAnalogClock: true,
+            showDate: true,
+            clockDateFormat: 'ddd, Do MMM'
+        };
+        initializeClock(settings)
+    }
 
 
     $('.js-settings-form-submit').on('click', function () {

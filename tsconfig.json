@@ -12,6 +12,7 @@
   "compileOnSave": true,
   "files": [
     "src/app/custom.d.ts",
-    "src/app/app.ts"
+    "src/app/app.ts",
+    "src/widget-api.d.ts"
   ]
 }
