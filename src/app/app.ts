@@ -47,10 +47,10 @@ $(document).ready(function () {
                 $.each(data, function (key, val) {
                     switch (key) {
                         case 'useAnalogClock':
-                            $('#clockType').val(val);
+                            $('#clockType').val(val.ToString());
                             break;
                         case 'showDate':
-                            $('#showDate').val(val);
+                            $('#showDate').val(val.ToString());
                             break;
                         case 'clockDateFormat':
                             $('#dateFormat').val(val);
