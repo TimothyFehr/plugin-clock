@@ -1,10 +1,9 @@
 "use strict";
 var clock_1 = require("./modules/clock/clock");
-var guid_1 = require("./modules/guid/guid");
 $(document).ready(function () {
     // register plugin
     function initializeClock(settings) {
-        new clock_1.Clock($('.clock-wrapper'), settings, new guid_1.Guid().generateGuid(), moment().valueOf(), moment);
+        new clock_1.Clock($('.clock-wrapper'), settings, moment().valueOf(), moment);
     }
     function getApiUrlParam() {
         var params = location.search;

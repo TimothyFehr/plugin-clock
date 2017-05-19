@@ -29,12 +29,11 @@ export class Clock {
     private step12 = 360 / 12;
     private step = (Math.PI * 2) / 12;
 
-    constructor(element: JQuery, options: IClockOptions, guid: string, dateString: number, moment: any) {
+    constructor(element: JQuery, options: IClockOptions, dateString: number, moment: any) {
         this.$element = $(element);
         this.options = $.extend({}, Clock.Default, options);
         this.date = dateString;
         this.moment = moment;
-        this.$element.attr('id', guid);
 
         this.init();
         setInterval(() => this.updateTime(), 1000);

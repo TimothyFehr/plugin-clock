@@ -1,6 +1,6 @@
 "use strict";
 var Clock = (function () {
-    function Clock(element, options, guid, dateString, moment) {
+    function Clock(element, options, dateString, moment) {
         var _this = this;
         this.step60 = 360 / 60;
         this.step12 = 360 / 12;
@@ -9,7 +9,6 @@ var Clock = (function () {
         this.options = $.extend({}, Clock.Default, options);
         this.date = dateString;
         this.moment = moment;
-        this.$element.attr('id', guid);
         this.init();
         setInterval(function () { return _this.updateTime(); }, 1000);
         setInterval(function () { return _this.updateDate(); }, 1000);

@@ -1,5 +1,4 @@
 import { Clock } from './modules/clock/clock';
-import { Guid } from './modules/guid/guid';
 
 declare var moment: any;
 
@@ -8,7 +7,6 @@ $(document).ready(function () {
     function initializeClock(settings) {
         new Clock($('.clock-wrapper'),
             settings,
-            new Guid().generateGuid(),
             moment().valueOf(),
             moment
         );

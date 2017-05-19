@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,7 +73,7 @@
 "use strict";
 
 var Clock = (function () {
-    function Clock(element, options, guid, dateString, moment) {
+    function Clock(element, options, dateString, moment) {
         var _this = this;
         this.step60 = 360 / 60;
         this.step12 = 360 / 12;
@@ -82,7 +82,6 @@ var Clock = (function () {
         this.options = $.extend({}, Clock.Default, options);
         this.date = dateString;
         this.moment = moment;
-        this.$element.attr('id', guid);
         this.init();
         setInterval(function () { return _this.updateTime(); }, 1000);
         setInterval(function () { return _this.updateDate(); }, 1000);
@@ -214,58 +213,18 @@ exports.Clock = Clock;
 
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Guid = (function () {
-    function Guid() {
-    }
-    Guid.prototype.generateGuid = function () {
-        var guidHolder = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
-        var hex = '0123456789abcdef';
-        var r = 0;
-        var guidResponse = '';
-        for (var i = 0; i < 36; i++) {
-            if (guidHolder[i] !== '-' && guidHolder[i] !== '4') {
-                // each x and y needs to be random
-                r = Math.random() * 16 || 0;
-            }
-            if (guidHolder[i] === 'x') {
-                guidResponse += hex[r];
-            }
-            else if (guidHolder[i] === 'y') {
-                // clock-seq-and-reserved first hex is filtered and remaining hex values are random
-                r = r && 0x3; // bit and with 0011 to set pos 2 to zero ?0??
-                r = r || 0x8; // set pos 3 to 1 as 1???
-                guidResponse += hex[r];
-            }
-            else {
-                guidResponse += guidHolder[i];
-            }
-        }
-        return guidResponse;
-    };
-    return Guid;
-}());
-exports.Guid = Guid;
-
-
-/***/ }),
+/* 1 */,
 /* 2 */,
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var clock_1 = __webpack_require__(0);
-var guid_1 = __webpack_require__(1);
 $(document).ready(function () {
     // register plugin
     function initializeClock(settings) {
-        new clock_1.Clock($('.clock-wrapper'), settings, new guid_1.Guid().generateGuid(), moment().valueOf(), moment);
+        new clock_1.Clock($('.clock-wrapper'), settings, moment().valueOf(), moment);
     }
     function getApiUrlParam() {
         var params = location.search;
