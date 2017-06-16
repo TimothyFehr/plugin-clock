@@ -16,8 +16,8 @@ module.exports = {
 	},
 	output: {
 		path: './dist/',
-		filename: 'Scripts/[name].js',
-		chunkFilename: "Scripts/[id].js",
+		filename: 'scripts/[name].js',
+		chunkFilename: "scripts/[id].js",
 		sourceMapFilename: "[file].map",
 		devtoolModuleFilenameTemplate: "file://[absolute-resource-path]",
 		devtoolFallbackModuleFilenameTemplate: "file://[absolute-resource-path]?[hash]"
